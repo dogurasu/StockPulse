@@ -1,3 +1,14 @@
+### My Own Notes
+ - **Use this stock API:** https://www.alphavantage.co/documentation/
+    - old API used https://finnhub.io/
+ - **Tutorial**: https://www.youtube.com/watch?v=T26V1aSEtJE
+ - **Plotly documentation:** https://plotly.com/javascript/react/
+
+ - **Stock component**
+    - has state vals: stockChartXVals, stockChartYVals
+    - has function 'componentDidMount' that calls stock API w/ Fetch 
+
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
