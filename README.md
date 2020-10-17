@@ -8,6 +8,9 @@
     - has state vals: stockChartXVals, stockChartYVals
     - has function 'componentDidMount' that calls stock API w/ Fetch 
 
+## TODO ##
+ - ~~create API connection with Alphavantage API~~
+ - Create Component System
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
