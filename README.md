@@ -3,6 +3,7 @@
     - old API used https://finnhub.io/
  - **Tutorial**: https://www.youtube.com/watch?v=T26V1aSEtJE
  - **Plotly documentation:** https://plotly.com/javascript/react/
+ - **Highcharts Docs:** https://github.com/highcharts/highcharts-react#getting-started
 
  - **Stock component**
     - has state vals: stockChartXVals, stockChartYVals

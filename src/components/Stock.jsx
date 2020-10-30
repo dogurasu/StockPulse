@@ -12,8 +12,8 @@ const Stock = ({ ticker, name, currentPrice, prevPrice, chartXvals, chartYvals})
             <Plot
                 data={[
                     {
-                        x: chartXVals,
-                        y: chartYVals,
+                        // x: chartXVals,
+                        // y: chartYVals,
                         type: 'scatter',
                         mode: 'lines+markers',
                         marker: {color: 'red'},
