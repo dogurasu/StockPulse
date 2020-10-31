@@ -1,11 +1,9 @@
 import React, { useState, useEffect, useRef } from 'react';
 import axios from 'axios';
-import { Container, Grid } from 'semantic-ui-react';
 
 import SearchBar from './SearchBar';
 import Watchlist from './WatchList';
 import Chart from './Chart';
-import Graph from './Graph';
 
 require("dotenv").config();
 
@@ -42,8 +40,7 @@ const App = () => {
         } else { // else, update render
             onTickerSubmit();
         }
-        
-        console.log(stockList)
+
         getStockData();
     }, [])
 
@@ -52,10 +49,6 @@ const App = () => {
         
     }, [stockList])
 
-    // grab data
-    // let data = [];
-
-    // 
     const getStockData = async () => {
         try {
             const data = await axios.get('https://demo-live-data.highcharts.com/aapl-c.json');
@@ -92,16 +85,34 @@ const App = () => {
                     apikey: process.env.REACT_APP_API_KEY_AV
                 }
             });
-            const values = Object.values(chart_res.data["Time Series (Daily)"]);
+            let values = Object.values(chart_res.data["Time Series (Daily)"]);
+            const keys = Object.keys(chart_res.data["Time Series (Daily)"]);
             const price_yday = (Math.round((parseFloat(values[1]["4. close"]) + Number.EPSILON) * 100) / 100).toFixed(2);
             const price_now = (Math.round((parseFloat(values[0]["4. close"]) + Number.EPSILON) * 100) / 100).toFixed(2);
+            const change = (Math.round((price_now - price_yday) * 100 / 100)).toFixed(2);
             const percentageChange = -((((price_yday - price_now) / price_yday) * 100).toFixed(2));
             // console.log(price_now);
             // const percentageChange = 
 
-            console.log(price_yday); // 115
-            console.log(price_now); // 108
-            console.log(percentageChange);
+            values = values.map((val) => ({
+                open: parseFloat(val["1. open"]),
+                high: parseFloat(val["2. high"]),
+                low: parseFloat(val["3. low"]),
+                close: parseFloat(val["4. close"]),
+                volume: parseFloat(val["5. volume"])
+            }));
+            // console.log(values);
+            // console.log(keys);
+            let pairs = []
+            for (let i = 0; i < values.length; ++i) {
+                pairs.push({
+                    "date": keys[i],
+                    ...values[i]
+                })
+            }
+            let chart = pairs.map(pair => [Date.parse(pair.date), pair.close]);
+            console.log(chart);
+            // console.log([Date.parse(day.date), day.close])
             console.log(chart_res);
 
             const overview_res = await axios.get('https://www.alphavantage.co/query?function=OVERVIEW', {
@@ -128,17 +139,20 @@ const App = () => {
             console.log("updatedList: " + updatedList)
 
             updatedList.push({
-                ticker: ticker,
-                company_name: overview_res.data.Name,
+                symbol: overview_res.data.Symbol,
+                color: 'red',
+                display: true,
+                name: overview_res.data.Name,
                 price: price_now,
-                percentage: percentageChange
-                // currentPrice: y[0],
-                // prevPrice: y[1],
-                // chartXVals: [...x],
-                // chartYVals: [...y],
+                change: change,
+                changePercent: percentageChange,
+                data: chart
             })
 
-            setStockList(updatedList)
+            setStockList(
+                ...stockList,
+                updatedList
+            )
 
             console.log("stocklist: " + stockList)
 
@@ -164,7 +178,7 @@ const App = () => {
             }
             {/* <Chart /> */}
             <Chart 
-                data={series}
+                series={stockList}
             />
         </div>
         

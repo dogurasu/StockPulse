@@ -36,12 +36,12 @@ const Stock = ({ stock, handleRemoveStock }) => {
             </div>
             <div className="Stock__container">
                 <div className="Stock__row--top">
-                    <span className="Stock__ticker">{stock.ticker}</span>
+                    <span className="Stock__ticker">{stock.symbol}</span>
                     <span className="Stock__price">${stock.price}</span>
                 </div>
                 <div className="Stock__row--bottom">
-                    <span className="Stock__company_name">{stock.company_name}</span>
-                    <span className="Stock__percentage">{stock.percentage}%</span>
+                    <span className="Stock__company_name">{stock.name}</span>
+                    <span className="Stock__percentage">{stock.changePercent}%</span>
                 </div>
             </div>
         </li>

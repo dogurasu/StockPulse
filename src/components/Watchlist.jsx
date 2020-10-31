@@ -31,7 +31,7 @@ const Watchlist = ({ stockList, handleRemoveStock }) => {
             <ul className="WatchList__list">
                 {stockList.map((stock) => (
                     <Stock
-                        key={stock.ticker}
+                        key={stock.symbol}
                         onClick={handleRemoveStock}
                         stock={stock}
                         handleRemoveStock={handleRemoveStock}

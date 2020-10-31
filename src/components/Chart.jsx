@@ -3,7 +3,7 @@ import Highcharts from 'highcharts/highstock';
 import axios from 'axios';
 
 
-const Chart = ({ data }) => {
+const Chart = ({ series }) => {
     
     
     const createChart = () => {
@@ -18,7 +18,7 @@ const Chart = ({ data }) => {
             },
             series: [{
                 name: "AAPL",
-                data: data.data,
+                series: series.series,
                 tooltip: {
                     valueDecimals: 2
                 }
@@ -27,21 +27,21 @@ const Chart = ({ data }) => {
 
         const chart = Highcharts.stockChart('Chart', {
             ...config,
-            data
+            series
         });
     }
 
     // initial render
     useEffect(() => {
-        console.log(data);
+        console.log(series);
         createChart();
     }, [])
 
     // re-renders whenever we receive a new series
     useEffect(() => {
-        console.log(data);
+        console.log(series);
         createChart();
-    }, [data])
+    }, [series])
     
     return (
         <div id="Chart" />
