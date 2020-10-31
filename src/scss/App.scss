@@ -1,0 +1,107 @@
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  // width: 100vw;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 2fr 8fr;
+  grid-template-columns: 2fr 8fr;
+  justify-items: center;
+  align-items: center;
+  margin: 0 4rem 0 4rem;
+}
+
+.title {
+
+}
+
+.Stock {
+  padding: 2rem;
+  display: flex;
+  flex-direction: row;
+
+  &__container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    font-size: 1rem;
+  }
+
+  &__icon {
+    display: flex;
+    align-items: center;
+    margin-right: 1rem;
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  
+
+  &:hover {
+    // cursor: pointer;
+    background: rgba(0,0,0, .03);
+    transition: .1s;
+  }
+
+  &__ticker {
+    font-size: 1.5rem;
+  }
+
+  &__company_name {
+    
+  }
+
+  &__price {
+    font-size: 1.2rem;
+  }
+
+  &__percentage {
+    
+  }
+
+  &__row {
+    &--top,
+    &--bottom {
+      display: flex;
+      justify-content: space-between;
+    }
+    &--top {
+      margin-bottom: .4rem;
+    }
+  }
+}
+
+.SearchBar {
+  width: 50%;
+  justify-self: left;
+  margin-left: 2rem;
+}
+
+.WatchList {
+  width: 100%;
+  align-self: start;
+
+  &__list {
+    
+    list-style: none;
+    border: 1px solid rgba(34,36,38,.15);
+    box-shadow: 0 1px 2px 0 rgba(34,36,38,.15);
+    // :not(:last-child) {
+    //   border-bottom: thin solid black;
+    // }
+    
+  }
+}
+
+#Chart {
+  width: 100%;
+  height: 100%;
+}
+
+.SearchBarInput {
+  padding: 1rem;
+}
