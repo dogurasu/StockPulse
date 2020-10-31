@@ -1,25 +1,50 @@
-import React from 'react';
-import Highcharts from 'highcharts';
-import HighchartsReact from 'highcharts-react-official';
+import React, { useEffect } from 'react';
+import Highcharts from 'highcharts/highstock';
+import axios from 'axios';
 
 
-const Chart = () => {
-    const config = {
-        title: {
-            text: 'My chart'
-        },
-        series: [{
-            data: [1, 2, 3]
-        }]
+const Chart = ({ data }) => {
+    
+    
+    const createChart = () => {
+        
+        const config = {
+            rangeSelector: {
+                selected: 1,
+                enabled: false
+            },
+            title: {
+                text: "Apple Stock Price"
+            },
+            series: [{
+                name: "AAPL",
+                data: data.data,
+                tooltip: {
+                    valueDecimals: 2
+                }
+            }]
+        };
+
+        const chart = Highcharts.stockChart('Chart', {
+            ...config,
+            data
+        });
     }
+
+    // initial render
+    useEffect(() => {
+        console.log(data);
+        createChart();
+    }, [])
+
+    // re-renders whenever we receive a new series
+    useEffect(() => {
+        console.log(data);
+        createChart();
+    }, [data])
     
     return (
-        <div style={{width: "500px", height: "500px", backgroundColor: "red"}}>
-            <HighchartsReact
-                highcharts={Highcharts}
-                options={config}
-            />
-        </div>
+        <div id="Chart" />
     )
 }
 
