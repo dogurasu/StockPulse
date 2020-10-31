@@ -2,10 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Stock from './Stock';
 import { Menu, Label } from 'semantic-ui-react';
 
-const Watchlist = () => {
+const Watchlist = ({ stockList }) => {
     const [activeItem, setActiveItem] = useState('');
-    
-    // temp stock item
 
     const colors = [
         {
@@ -32,14 +30,15 @@ const Watchlist = () => {
 
     return (
         <div className="WatchList">
-            <ul>
-                {stocks.map((stock) => (
+            <ul className="WatchList__list">
+                {stockList.map((stock) => (
                     <Stock
+                        onClick={handleSelectStock}
                         stock={stock}
                     />
                 ))}
             </ul>
-            <Menu 
+            {/* <Menu 
                 fluid
                 vertical
                 size='massive'
@@ -57,7 +56,7 @@ const Watchlist = () => {
                         AAPL
                     </Menu.Item>
                 ))}
-                {/* <Menu.Item
+                <Menu.Item
                     name="stockName2"
                     active={activeItem === "stockName2"}
                     onClick={handleSelectStock}
@@ -66,8 +65,8 @@ const Watchlist = () => {
                         $300.21
                     </Label>
                     AAPL
-                </Menu.Item> */}
-            </Menu>
+                </Menu.Item>
+            </Menu> */}
         </div>
     )
 }

@@ -15,7 +15,7 @@ const SearchBar = ({ onTickerSubmit }) => {
     }
 
     return (
-        <div className="search-bar">
+        <div className="SearchBar">
             <form onSubmit={onFormSubmit} className="ui form">
                 <div className="field">
                     <input
