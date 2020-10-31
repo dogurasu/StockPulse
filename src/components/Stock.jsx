@@ -3,10 +3,11 @@ import axios from 'axios';
 import Plot from 'react-plotly.js';
 import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 
-const Stock = ({ stock, handleSelectStock }) => {
-    const handleRemoveStock = () => {
-        
-    };
+const Stock = ({ stock, handleRemoveStock }) => {
+
+    const onRemoveStock = () => {
+        handleRemoveStock(stock.ticker);
+    }
     
     const mouseOverHandle = () => {
 
@@ -30,7 +31,7 @@ const Stock = ({ stock, handleSelectStock }) => {
                     fontSize="large"
                     style={{color: "red"}}
                     className="Stock__icon-remove"
-                    onClick={handleRemoveStock}
+                    onClick={onRemoveStock}
                 />
             </div>
             <div className="Stock__container">

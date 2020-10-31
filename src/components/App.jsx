@@ -39,7 +39,7 @@ const App = () => {
         // check if initial render
         if (isInitialMount.current) {
             isInitialMount.current = false;
-        } else {
+        } else { // else, update render
             onTickerSubmit();
         }
         
@@ -63,6 +63,11 @@ const App = () => {
         } catch(err) {
             console.log(err);
         }
+    }
+
+    const handleRemoveStock = (ticker) => {
+        console.log(ticker)
+        setStockList(stockList.filter(stock => stock.ticker !== ticker))
     }
 
     // let api_call = `https://www.alphavantage.co/query?function=TIME_SERIES_INTRADAY&symbol=FB&outputsize=compact&apikey=${process.env.REACT_APP_API_KEY_AV}`;
@@ -123,7 +128,7 @@ const App = () => {
             console.log("updatedList: " + updatedList)
 
             updatedList.push({
-                ticker: overview_res.data.Symbol,
+                ticker: ticker,
                 company_name: overview_res.data.Name,
                 price: price_now,
                 percentage: percentageChange
@@ -148,9 +153,15 @@ const App = () => {
             <SearchBar
                 onTickerSubmit={onTickerSubmit}
             />
-            <Watchlist 
-                stockList={stockList}
-            />
+            {stockList.length > 0 
+            ? (
+                <Watchlist 
+                    stockList={stockList}
+                    handleRemoveStock={handleRemoveStock}
+                />
+            )
+            : <div className="WatchList"></div>
+            }
             {/* <Chart /> */}
             <Chart 
                 data={series}

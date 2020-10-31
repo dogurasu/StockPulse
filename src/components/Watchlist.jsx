@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Stock from './Stock';
 import { Menu, Label } from 'semantic-ui-react';
 
-const Watchlist = ({ stockList }) => {
+const Watchlist = ({ stockList, handleRemoveStock }) => {
     const [activeItem, setActiveItem] = useState('');
 
     const colors = [
@@ -21,8 +21,6 @@ const Watchlist = ({ stockList }) => {
 
     }, []);
 
-    // const renderedWatchlist = 
-
     const handleSelectStock = (e, { name } ) => {
         setActiveItem(name);
     }
@@ -33,8 +31,10 @@ const Watchlist = ({ stockList }) => {
             <ul className="WatchList__list">
                 {stockList.map((stock) => (
                     <Stock
-                        onClick={handleSelectStock}
+                        key={stock.ticker}
+                        onClick={handleRemoveStock}
                         stock={stock}
+                        handleRemoveStock={handleRemoveStock}
                     />
                 ))}
             </ul>
