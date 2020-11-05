@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import Stock from './Stock';
-import { Menu, Label } from 'semantic-ui-react';
 
 const Watchlist = ({ stockList, handleRemoveStock }) => {
     const [activeItem, setActiveItem] = useState('');
@@ -18,7 +17,6 @@ const Watchlist = ({ stockList, handleRemoveStock }) => {
 
     // update watchlist
     useEffect(() => {
-        
     }, []);
 
     const handleSelectStock = (e, { name } ) => {
