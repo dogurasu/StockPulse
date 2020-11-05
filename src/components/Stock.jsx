@@ -6,7 +6,7 @@ import HighlightOffIcon from '@material-ui/icons/HighlightOff';
 const Stock = ({ stock, handleRemoveStock }) => {
 
     const onRemoveStock = () => {
-        handleRemoveStock(stock.ticker);
+        handleRemoveStock(stock.symbol);
     }
     
     const mouseOverHandle = () => {

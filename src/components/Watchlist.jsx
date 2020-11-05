@@ -18,7 +18,7 @@ const Watchlist = ({ stockList, handleRemoveStock }) => {
 
     // update watchlist
     useEffect(() => {
-
+        
     }, []);
 
     const handleSelectStock = (e, { name } ) => {

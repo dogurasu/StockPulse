@@ -1,28 +1,39 @@
 import React, { useEffect } from 'react';
 import Highcharts from 'highcharts/highstock';
-import axios from 'axios';
-
 
 const Chart = ({ series }) => {
-    
-    
     const createChart = () => {
         
         const config = {
             rangeSelector: {
-                selected: 1,
+                selected: 3,
                 enabled: false
             },
             title: {
-                text: "Apple Stock Price"
+                // text: "Apple Stock Price"
             },
             series: [{
-                name: "AAPL",
+                // name: "AAPL",
                 series: series.series,
+                showInNavigator: false,
                 tooltip: {
                     valueDecimals: 2
                 }
-            }]
+            }],
+            xAxis: {
+
+            },
+            yAxis: {
+                labels: {
+                    format: '$ {value}'
+                }
+            },
+            scrollbar: {
+                enabled: false
+            },
+            navigator: {
+                enabled: false
+            }
         };
 
         const chart = Highcharts.stockChart('Chart', {
@@ -33,13 +44,11 @@ const Chart = ({ series }) => {
 
     // initial render
     useEffect(() => {
-        console.log(series);
         createChart();
     }, [])
 
     // re-renders whenever we receive a new series
     useEffect(() => {
-        console.log(series);
         createChart();
     }, [series])
     
